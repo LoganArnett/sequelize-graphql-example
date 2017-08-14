@@ -6,7 +6,7 @@ block content
 
   h2 Creating a new user
   form(action="/users/create", method="post")
-    input(type="text", name="username")
+    input(type="text", name="name")
     input(type="submit")
 
   h2 Users
@@ -14,7 +14,7 @@ block content
   ul
   each user in users
     li
-      = user.username
+      = user.name
       | &nbsp;
       | (
       a(href="/users/" + user.id + "/destroy") Destroy

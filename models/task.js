@@ -2,16 +2,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    users: DataTypes.ARRAY(DataTypes.JSONB)
   }, {
     classMethods: {
       associate: function(models) {
-        Task.belongsTo(models.User, {
-          onDelete: "CASCADE",
-          foreignKey: {
-            allowNull: false
-          }
-        });
+        models.Task.belongsToMany(models.User, { as: 'Developers', through: 'worker_tasks', foreignKey: 'taskId' })
       }
     }
   });
